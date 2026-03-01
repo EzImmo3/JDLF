@@ -1,0 +1,200 @@
+:root {
+  --bg: #020617;
+  --bg-alt: rgba(15, 23, 42, 0.9);
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #f97316;
+  --accent-soft: rgba(249, 115, 22, 0.15);
+  --border: rgba(148, 163, 184, 0.4);
+}
+
+body.light {
+  --bg: #f9fafb;
+  --bg-alt: #ffffff;
+  --text: #020617;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.12);
+  --border: #e5e7eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Fond animé */
+#bgCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Topbar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-alt);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 600;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* Layout */
+.app {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* Liste */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.poem-card-mini {
+  background: var(--bg-alt);
+  border-radius: 18px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.poem-card-mini:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+/* Poème */
+.poem-card {
+  background: var(--bg-alt);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  margin-top: 20px;
+}
+
+.poem-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.poem-content {
+  white-space: pre-wrap;
+  font-family: Georgia, serif;
+  margin-top: 10px;
+  line-height: 1.7;
+}
+
+.poem-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.icon-text-btn {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.poem-tools {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: white;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+/* Immersif */
+#immersive-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+#immersive-overlay.active {
+  display: flex;
+}
+
+.immersive-inner {
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #000;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.close-immersive {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

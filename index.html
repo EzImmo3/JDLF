@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poèmes d’Enzo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+
+  <header class="topbar">
+    <div class="logo">Poèmes d’Enzo</div>
+    <button id="toggleTheme" class="icon-btn">🌙</button>
+  </header>
+
+  <main class="app">
+
+    <!-- LISTE DES POÈMES -->
+    <section id="list-section" class="screen active">
+      <h1>Mes poèmes</h1>
+      <p class="subtitle">Un espace intime pour mes mots.</p>
+      <div id="poemList" class="grid"></div>
+    </section>
+
+    <!-- LECTURE D’UN POÈME -->
+    <section id="poem-section" class="screen">
+      <button id="backBtn" class="secondary-btn">← Retour</button>
+
+      <article class="poem-card">
+        <h2 id="poemTitle"></h2>
+        <p id="poemMeta" class="poem-meta"></p>
+
+        <pre id="poemContent" class="poem-content"></pre>
+
+        <div class="poem-actions">
+          <button id="likeBtn" class="icon-text-btn">❤️ <span id="likeCount">0</span></button>
+          <span class="meta">Lectures : <span id="viewCount">0</span></span>
+        </div>
+
+        <div class="poem-tools">
+          <button id="immersiveBtn" class="primary-btn">Lecture immersive</button>
+          <button id="copyBtn" class="secondary-btn">Copier</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- MODE IMMERSIF -->
+    <section id="immersive-overlay">
+      <div class="immersive-inner">
+        <button id="closeImmersive" class="icon-btn close-immersive">✕</button>
+        <h2 id="immTitle"></h2>
+        <pre id="immContent"></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
