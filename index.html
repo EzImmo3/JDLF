@@ -118,7 +118,30 @@
 
   </main>
 
+  <!-- Ton script principal -->
   <script src="script.js"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAifmapNBxAYXB2G2sNpID80VWpRPZglqM",
+      authDomain: "jdlf-b7b5f.firebaseapp.com",
+      databaseURL: "https://jdlf-b7b5f-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "jdlf-b7b5f",
+      storageBucket: "jdlf-b7b5f.firebasestorage.app",
+      messagingSenderId: "988058915118",
+      appId: "1:988058915118:web:d4d3b42335eea5ceb1aabf",
+      measurementId: "G-1CC25DEDL1"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+
+  <!-- Service Worker -->
   <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("service-worker.js");
