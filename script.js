@@ -230,3 +230,31 @@ immNext.addEventListener("click", () => {
     immersiveBtn.click();
   }
 });
+// Appliquer le thème sauvegardé au chargement
+(function applySavedTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    document.body.classList.remove("light", "dark");
+    document.body.classList.add(savedTheme);
+    toggleThemeBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+  } else {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.body.classList.add(prefersDark ? "dark" : "light");
+    toggleThemeBtn.textContent = prefersDark ? "☀️" : "🌙";
+  }
+})();
+
+// Basculer le thème au clic
+toggleThemeBtn.addEventListener("click", () => {
+  if (document.body.classList.contains("dark")) {
+    document.body.classList.remove("dark");
+    document.body.classList.add("light");
+    localStorage.setItem("theme", "light");
+    toggleThemeBtn.textContent = "🌙";
+  } else {
+    document.body.classList.remove("light");
+    document.body.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+    toggleThemeBtn.textContent = "☀️";
+  }
+});
