@@ -224,5 +224,9 @@ immPrev.addEventListener("click", () => {
 });
 
 immNext.addEventListener("click", () => {
-  const index = poems.findIndex(p => p)
-})
+  const index = poems.findIndex(p => p.id === currentPoem.id);
+  if (index < poems.length - 1) {
+    openPoem(poems[index + 1].id);
+    immersiveBtn.click();
+  }
+});
