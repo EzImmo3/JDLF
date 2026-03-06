@@ -118,9 +118,9 @@
 
   </main>
 
-  <!-- Firebase SDK d'abord -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <!-- Firebase SDK v8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
   <script>
     const firebaseConfig = {
@@ -134,11 +134,11 @@
       measurementId: "G-1CC25DEDL1"
     };
 
-    const app = firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
   </script>
 
-  <!-- Ton script principal ensuite -->
+  <!-- Ton script principal -->
   <script src="script.js" defer></script>
 
   <!-- Service Worker -->
