@@ -50,7 +50,7 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
 let currentPoem = null;
-let favorites = {}; // Favoris restent locaux pour l'instant
+let favorites = {}; // Favoris restent locaux
 
 /* --- Firebase helpers --- */
 function incrementViews(poemId) {
@@ -228,9 +228,29 @@ immNext.addEventListener("click", () => {
   if (index < poems.length - 1) {
     openPoem(poems[index + 1].id);
     immersiveBtn.click();
+    }
+});
+
+/* --- Copier et Partager --- */
+copyBtn.addEventListener("click", async () => {
+  const text = `${currentPoem.titre}\n\n${currentPoem.contenu}`;
+  await navigator.clipboard.writeText(text);
+  copyBtn.textContent = "Copié ✔";
+  setTimeout(() => (copyBtn.textContent = "Copier"), 1500);
+});
+
+shareBtn.addEventListener("click", async () => {
+  const text = `${currentPoem.titre}\n\n${currentPoem.contenu}`;
+  if (navigator.share) {
+    await navigator.share({ title: currentPoem.titre, text });
+  } else {
+    await navigator.clipboard.writeText(text);
+    shareBtn.textContent = "Copié ✔";
+    setTimeout(() => (shareBtn.textContent = "Partager"), 1500);
   }
 });
-// Appliquer le thème sauvegardé au chargement
+
+/* --- Thème clair/sombre --- */
 (function applySavedTheme() {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme) {
@@ -244,7 +264,6 @@ immNext.addEventListener("click", () => {
   }
 })();
 
-// Basculer le thème au clic
 toggleThemeBtn.addEventListener("click", () => {
   if (document.body.classList.contains("dark")) {
     document.body.classList.remove("dark");
@@ -258,3 +277,39 @@ toggleThemeBtn.addEventListener("click", () => {
     toggleThemeBtn.textContent = "☀️";
   }
 });
+
+/* --- Fond animé (canvas) --- */
+const canvas = document.getElementById("bgCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = Array.from({ length: 50 }, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
+  r: Math.random() * 3 + 1,
+  dx: (Math.random() - 0.5) * 1,
+  dy: (Math.random() - 0.5) * 1
+}));
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(200,200,255,0.5)";
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
