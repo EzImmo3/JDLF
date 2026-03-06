@@ -1,6 +1,6 @@
 let poems = [];
 
-fetch("poems/poems.json")
+fetch("./poems/poems.json")
   .then(r => r.json())
   .then(data => {
     poems = data.sort((a, b) => a.ordre - b.ordre);

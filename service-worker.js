@@ -1,11 +1,11 @@
-const CACHE_NAME = "JDLF-poems-v1";
+const CACHE_NAME = "JDLF-poems-v2";
 
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
   "/style.css",
   "/script.js",
-  "/poems/poems.json",
+  "./poems/poems.json",
   "/manifest.json",
   "/icons/icon-192.png",
   "/icons/icon-512.png"
